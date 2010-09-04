@@ -1,10 +1,10 @@
 = list
 
-* FIX (url)
+* http://www.geeklob.wordpress.com
 
 == DESCRIPTION:
 
-FIX (describe your package)
+List is a simple linked list implementation in Ruby.
 
 == FEATURES/PROBLEMS:
 
@@ -12,15 +12,29 @@ FIX (describe your package)
 
 == SYNOPSIS:
 
-  FIX (code sample of usage)
-
+	require 'list'
+	
+	Node.new(:first)
+	# => #<Node:0x3659fc @n=nil, @d=:first>
+	
+	[:first].to_list
+	# => #<Node:0x3645c0 @n=nil, @d=:first>
+	
+	(1..10).to_a.to_list
+	# => #<Node:0x357334 @n=#<Node:0x35730c @n=#<Node:0x3572e4 @n=#<Node:0x3572bc @n=#<Node:0x357294 @n=#<Node:0x35726c @n=#<Node:0x357244 @n=#<Node:0x35721c @n=#<Node:0x3571f4 @n=#<Node:0x3571cc @n=nil, @d=10>, @d=9>, @d=8>, @d=7>, @d=6>, @d=5>, @d=4>, @d=3>, @d=2>, @d=1>
+	
+	# Fully implements Enumerable
+	
+	(1..10).to_a.to_list.find_all { |x| x % 3 == 0}
+	
 == REQUIREMENTS:
 
-* FIX (list of requirements)
+* None
 
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+* sudo gem install indigo747-list
+* or download the gem.
 
 == DEVELOPERS:
 
