@@ -29,11 +29,12 @@ class Node
 	
 	def each &block
 		block.call(@d)
-		@n.each { |x| block.call x} unless end?
+        @n.each &block unless end?
+		#@n.each { |x| block.call x} unless end?
 	end
 	
-	def <=> n
-		@d <=> n.d
+	def <=> x
+		@d <=> x.d
 	end
 	
 	def add thing
@@ -55,8 +56,8 @@ class Node
 	
 	def to_a
 		ary = []
-		ary << @d
-		ary << @n.to_a if !end?
+		ary << @d 
+        ary << @n.to_a if !end?
 		return ary.flatten
 	end
 end
