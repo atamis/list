@@ -1,7 +1,7 @@
 
 
 class Node
-	include Enumerable
+	include Enumerable, Comparable
 	attr_reader :d
 	
 	# Create a new Node. First argument is the data for the
@@ -10,54 +10,65 @@ class Node
 		@d = d # Data
 		@n = n # Next node
 	end
-	
-	def first
-		@d
-	end
-	
-	def rest
-		@n
-	end
-	
-	def end?
-		@n == nil
-	end
-	
-	def get_end
-		@n == nil ? self : @n.get_end
-	end
-	
-	def each &block
-		block.call(@d)
-        @n.each &block unless end?
-		#@n.each { |x| block.call x} unless end?
-	end
-	
-	def <=> x
-		@d <=> x.d
-	end
-	
-	def add thing
-		if end?
-			@n = thing.is_a?(self.class) ? thing : self.class.new(thing)
-		else
-			@n.add thing
-		end
-	end
-	
-	def length count=0
-		count += 1
-		if end?
-			count
-		else
-			@n.length count
-		end
-	end
-	
-	def to_a
-		ary = []
-		ary << @d 
+    
+    # In the grand scheme of things, get the head of this list.
+    # For this node, give us your data.
+    def first
+        @d
+    end
+    
+    # In the grand scheme of things, give the rest of the list, as opposed to the head of the list.
+    # For this node, give us the next node.
+    def rest
+        @n
+    end
+    
+    # Is this the end of the list?
+    # For reference, it is the end of the list if the next node is nil.
+    def end?
+        @n.is_a? NilClass # We use this because Node overrides ==, and things get screwed up.
+    end
+    
+    # This is a recursive function that goes through the list until we get to the last node, where it returns itself.
+    def get_end
+        end? ? self : @n.get_end
+    end
+    
+    # Iterates through the items in the list, starting from this one, and going until we get to the end.
+    def each &block
+        block.call(@d)
+        @n.each(&block)unless end?
+    end
+    
+    # Used for the Comparable module.
+    def <=> x
+        @d <=> x.d
+    end
+    
+    # Adds something to the end of the list.
+    def add thing
+        if end?
+            @n = thing.is_a?(self.class) ? thing : self.class.new(thing)
+        else
+            @n.add thing
+        end
+    end
+    
+    # Gets the length of the list
+    def length count=0
+        count += 1
+        if end?
+            count
+        else
+            @n.length count
+        end
+    end
+    
+    # Converts the list to an array.
+    def to_a
+        ary = []
+        ary << @d 
         ary << @n.to_a if !end?
-		return ary.flatten
-	end
+        return ary.flatten
+    end
 end
