@@ -52,7 +52,19 @@ class TestNode < Test::Unit::TestCase
 		assert_equal 2, @n.length
   end
 
-	def test_to_array
+  def test_to_array
 		assert_equal([:first, :second], @n.to_a)
-	end
+  end
+
+    def test_random_access
+        x = (0..5).to_a.to_list
+        assert_equal(0, x[0])
+        assert_equal(1, x[1])
+        0.upto(5) { |i| assert_equal(i, x[i])}
+        t = [:first, :second, :third].to_list
+        assert_equal(:first, t[0])
+        assert_equal(:second, t[1])
+        assert_equal(:third, t[2])
+    end
+    
 end

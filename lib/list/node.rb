@@ -77,4 +77,12 @@ class Node
         ary << @n.to_a unless end?
         return ary.flatten
     end
+
+    def [](x)
+        if x == 0
+            @d
+        else
+            @n[x-1]
+        end
+    end
 end
