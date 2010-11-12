@@ -45,7 +45,7 @@ class Node
         @d <=> x.d
     end
     
-    # Adds something to the end of the list.
+    # Adds something to the end of the list. This now accepts arrays.
     def add thing
         if end?
             if thing.is_a? Array
@@ -74,7 +74,7 @@ class Node
     def to_a
         ary = []
         ary << @d 
-        ary << @n.to_a if !end?
+        ary << @n.to_a unless end?
         return ary.flatten
     end
 end
