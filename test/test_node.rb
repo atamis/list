@@ -40,6 +40,11 @@ class TestNode < Test::Unit::TestCase
 		@n.add Node.new(:fourth)
 		assert_equal :fourth, @n.get_end.d
 		assert_equal 4, @n.length
+        
+        x = Node.new(1)
+        x.add([2, 3, 4])
+        assert_equal(1, x.d)
+        assert_equal(4, x.get_end.d)
   end
   
   def test_length

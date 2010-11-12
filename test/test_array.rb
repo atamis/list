@@ -10,4 +10,11 @@ class TestArray < Test::Unit::TestCase
 		assert_equal(:three, n.rest.rest.d)
 		assert_equal(:three, n.get_end.d)
 	end
+    
+    def test_head_tail
+        a = [1, 2, 3]
+        assert_equal(1, a.head)
+        assert_equal([2, 3], a.tail)
+        assert_nothing_raised(Exception) { h, t = a.ht  }
+    end
 end

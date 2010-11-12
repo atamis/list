@@ -1,4 +1,4 @@
-
+require 'list/array'
 
 class Node
 	include Enumerable, Comparable
@@ -48,7 +48,13 @@ class Node
     # Adds something to the end of the list.
     def add thing
         if end?
-            @n = thing.is_a?(self.class) ? thing : self.class.new(thing)
+            if thing.is_a? Array
+                h, t = thing.ht
+                add h
+                @n.add t unless t.empty?
+            else
+                @n = thing.is_a?(self.class) ? thing : self.class.new(thing)
+            end
         else
             @n.add thing
         end
