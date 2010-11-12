@@ -3,6 +3,9 @@ History.txt
 Manifest.txt
 README.txt
 Rakefile
-bin/list
 lib/list.rb
+lib/list/node.rb
+lib/list/array.rb
 test/test_list.rb
+test/test_node.rb
+test/test_array.rb
