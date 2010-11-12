@@ -92,7 +92,7 @@ class Node
 #            x += ')'
 #        else
 #            x += (@d.to_s + ", ")
-#            x += @n.to_s
+#            x += @n.to_s x
 #        end
 #        return x
 #    end
